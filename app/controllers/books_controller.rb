@@ -1,16 +1,24 @@
 class BooksController < ApplicationController
   def index
-    render json: Array.new(10, book)
+    @books = book_requests.map { |book_request| Book.new(book_request) }
   end
 
   private
 
-  def book
-    {
-      title: "The Martian",
-      author: "Andy Weir",
-      link: "https://capitadiscovery.co.uk/islington/items/872958",
-      image_url: "https://images.gr-assets.com/books/1413706054l/18007564.jpg"
-    }
+  def book_requests
+    begin
+      Rails.cache.fetch("book_requests", expires_in: book_requests_cache_expires_in) do
+        LibraryAssistant.generate_and_handle_book_requests(filter: true)
+      end
+    rescue StandardError => e
+      Rails.logger.info e
+      []
+    end
+  end
+
+  def book_requests_cache_expires_in
+    return 1.hour unless ENV["BOOK_REQUESTS_CACHE_MINUTES"]
+
+    ENV["BOOK_REQUESTS_CACHE_MINUTES"].to_i.minutes
   end
 end
