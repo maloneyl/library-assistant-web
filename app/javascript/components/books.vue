@@ -12,7 +12,10 @@
 
   export default {
     props: {
-      books: { type: Array }
+      books: {
+        type: Array,
+        default: () => []
+      }
     },
     components: { Book }
   }
