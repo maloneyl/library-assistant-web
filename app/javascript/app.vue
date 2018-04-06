@@ -1,15 +1,19 @@
 <template>
   <div id="app">
-    <header>
-      <h1>🤓📚</h1>
-    </header>
-
     <div class="container">
-      <loader v-if="this.loading" />
-      <books v-else :books="books" />
-      <div class="errors" v-if="this.errors.length > 0">
-        😳😅
-      </div>
+      <header>🤓📚</header>
+
+      <main>
+        <div class="loader" v-if="this.loading"><loader /></div>
+        <template v-else>
+          <div class="errors" v-if="this.hasErrors">😳😅</div>
+          <books v-else :books="books" />
+        </template>
+      </main>
+
+      <footer>
+        &ldquo;{{ this.quote.body }}&rdquo; &mdash; {{ this.quote.author }}
+      </footer>
     </div>
   </div>
 </template>
@@ -25,11 +29,20 @@
       return {
         loading: false,
         books: [],
-        errors: []
+        errors: [],
+        quote: {
+          body: 'I wish you way more than luck.',
+          author: 'David Foster Wallace'
+        }
       }
     },
     created() {
       this.fetchData();
+    },
+    computed: {
+      hasErrors() {
+        return this.errors.length > 0
+      }
     },
     methods: {
       fetchData() {
@@ -37,7 +50,7 @@
 
         axios.get('/books')
           .then(({data}) => this.books = data)
-          .catch(error => this.errors.push = error)
+          .catch(error => this.errors.push(error))
           .then(() => this.loading = false)
       }
     }
@@ -49,24 +62,45 @@
     margin: 0 auto;
   }
 
-  header {
-    background: hsl(0, 0%, 10%);
-    padding: 0.5em;
-    text-align: center;
+  .container {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+    justify-items: center;
+    align-items: stretch;
 
-    h1 {
-      margin: 0;
-      font-size: 3em;
+    .loader, .errors {
+      padding-top: 25vh;
     }
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
+  header {
+    grid-area: header;
+    width: 100%;
+    background: hsl(0, 0%, 10%);
+    padding: 0.5em;
+    font-size: 2em;
+  }
 
-    .loader, .errors {
-      margin-top: 20vh;
-    }
+  main {
+    grid-area: main;
+    max-width: 1000px;
+  }
+
+  footer {
+    grid-area: footer;
+    width: 100%;
+    background: hsl(0, 0%, 20%);
+    color: hsl(360, 100%, 100%);
+    padding: 1em;
+    text-align: center;
+    font-size: 0.7em;
+    font-weight: 300;
+    font-style: italic;
   }
 </style>

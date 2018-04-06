@@ -1,19 +1,11 @@
 <template>
-  <div class="loader">
-    <div class="loading">Loading...</div>
-  </div>
+  <div class="loading"></div>
 </template>
 
 <script>
 </script>
 
 <style scoped>
-  .loader {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .loading {
     color: #ffffff;
     font-size: 1em;
