@@ -1,26 +1,31 @@
 <template>
   <div id="app">
-    <h1>🤓📚</h1>
+    <header>
+      <h1>🤓📚</h1>
+    </header>
 
-    <div class="loading" v-if="this.loading">Loading...</div>
-    <div class="books" v-else>
-      <book :bookObj="book" v-for="book in books" />
+    <div class="container">
+      <loader v-if="this.loading" />
+      <books v-else :books="books" />
+      <div class="errors" v-if="this.errors.length > 0">
+        😳😅
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import Loader from './components/loader.vue';
+  import Books from './components/books.vue';
   import axios from 'axios';
-  import Book from './components/book.vue';
 
   export default {
-    components: {
-      Book
-    },
+    components: { Books, Loader },
     data() {
       return {
         loading: false,
-        books: []
+        books: [],
+        errors: []
       }
     },
     created() {
@@ -29,12 +34,11 @@
     methods: {
       fetchData() {
         this.loading = true;
+
         axios.get('/books')
-        .then(({data}) => {
-          this.books = data;
-          this.loading = false;
-         })
-        .catch(error => console.log(error))
+          .then(({data}) => this.books = data)
+          .catch(error => this.errors.push = error)
+          .then(() => this.loading = false)
       }
     }
   }
@@ -42,20 +46,27 @@
 
 <style lang="scss" scoped>
   #app {
-    padding: 2em 2em;
-    max-width: 1200px;
     margin: 0 auto;
   }
 
-  h1, .loading {
-    width: 100%;
+  header {
+    background: hsl(0, 0%, 10%);
+    padding: 0.5em;
     text-align: center;
+
+    h1 {
+      margin: 0;
+      font-size: 3em;
+    }
   }
 
-  .books {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    flex: 0 0 auto;
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+
+    .loader, .errors {
+      margin-top: 20vh;
+    }
   }
 </style>

@@ -9,6 +9,30 @@
     "vue-template-compiler": "^2.5.16"
   },
   "devDependencies": {
+    "@vue/test-utils": "^1.0.0-beta.13",
+    "babel-jest": "^22.4.3",
+    "jest": "^22.4.3",
+    "vue-jest": "^2.3.0",
     "webpack-dev-server": "2.11.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "modulePathIgnorePatterns": [
+      "config/webpack/test.js"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/app/javascript/$1"
+    }
   }
 }
