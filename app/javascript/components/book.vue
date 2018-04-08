@@ -4,20 +4,30 @@
       <span class="link"></span>
     </a>
     <figure class="cover">
-      <img :src="bookObj.image_url" alt="Book cover" />
+      <img :src="bookObj.image_url" :alt="this.bookCoverAltText" />
     </figure>
     <div class="info">
-      <div class="title">{{ bookObj.title }}</div>
-      <div class="author">{{ bookObj.author }}</div>
-      <div class="extras">{{ bookObj.year }} | {{ bookObj.average_rating }}</div>
+      <div class="average-rating">
+        <rating :rating="bookObj.average_rating" />
+        {{ bookObj.average_rating }}
+      </div>
+      <div class="year">[{{ bookObj.year }}]</div>
     </div>
   </div>
 </template>
 
 <script>
+  import Rating from './rating.vue';
+
   export default {
     props: {
       bookObj: { type: Object }
+    },
+    components: { Rating },
+    computed: {
+      bookCoverAltText() {
+        return `${this.bookObj.title} | ${this.bookObj.author}`
+      }
     }
   }
 </script>
@@ -27,7 +37,9 @@
     background: hsl(360, 100%, 100%);
     margin: 0 1.5em 3em 1.5em;
     position: relative;
-    max-width: 250px;
+    width: 270px;
+    height: 270px;
+    overflow: hidden;
 
     &:hover {
       box-shadow: 3px 3px 8px hsl(0, 0%, 70%);
@@ -43,56 +55,21 @@
 
     figure.cover {
       margin: 0;
-      width: 100%;
+      float: left;
 
       img {
-        width: 100%;
-        height: 100%;
+        max-height: 270px;
       }
     }
 
     .info {
-      padding: 1.5em;
-      text-align: center;
-      line-height: 1.3;
-      width: 100%;
+      text-align: right;
+      font-size: 0.8em;
+      color: hsl(0, 0%, 40%);
+      padding: 0.5em;
 
-      .title {
-        font-weight: 700;
-        font-size: 1.1em;
-        margin-bottom: 0.3em;
-      }
-
-      .author {
-        font-size: 1em;
-        color: hsl(25, 100%, 45%);
-        margin-bottom: 0.3em;
-      }
-
-      .extras {
-        font-size: 0.8em;
-        color: hsl(0, 0%, 40%);
-      }
-    }
-  }
-
-  @media only screen and (min-width: 40em) {
-    .book {
-      display: flex;
-      max-width: 450px;
-      flex: 1 1 0;
-
-      figure.cover {
-        min-width: 230px;
-        max-width: 230px;
-        height: 350px;
-      }
-
-      .info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        flex-wrap: wrap;
+      .year {
+        padding-top: 0.5em;
       }
     }
   }
