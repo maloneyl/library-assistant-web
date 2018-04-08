@@ -8,8 +8,10 @@
     </figure>
     <div class="info">
       <div class="average-rating">
-        <rating :rating="bookObj.average_rating" />
-        {{ bookObj.average_rating }}
+        <star-rating :rating="bookObj.average_rating" />
+        <div class="rating">
+          {{ bookObj.average_rating }}
+        </div>
       </div>
       <div class="year">[{{ bookObj.year }}]</div>
     </div>
@@ -17,13 +19,13 @@
 </template>
 
 <script>
-  import Rating from './rating.vue';
+  import StarRating from './star-rating.vue';
 
   export default {
     props: {
       bookObj: { type: Object }
     },
-    components: { Rating },
+    components: { StarRating },
     computed: {
       bookCoverAltText() {
         return `${this.bookObj.title} | ${this.bookObj.author}`
@@ -35,10 +37,9 @@
 <style lang="scss" scoped>
   .book {
     background: hsl(360, 100%, 100%);
-    margin: 0 1.5em 3em 1.5em;
     position: relative;
-    width: 270px;
-    height: 270px;
+    width: 320px;
+    height: 280px;
     overflow: hidden;
 
     &:hover {
@@ -56,9 +57,12 @@
     figure.cover {
       margin: 0;
       float: left;
+      height: 100%;
+      max-width: 60%;
 
       img {
-        max-height: 270px;
+        height: 100%;
+        width: 100%;
       }
     }
 
@@ -66,7 +70,7 @@
       text-align: right;
       font-size: 0.8em;
       color: hsl(0, 0%, 40%);
-      padding: 0.5em;
+      padding: 0.8em;
 
       .year {
         padding-top: 0.5em;

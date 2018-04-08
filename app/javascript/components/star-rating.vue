@@ -1,5 +1,5 @@
 <template>
-  <div class="rating">
+  <div class="star-rating">
     <div class="empty-stars"></div>
     <div class="full-stars" :style="this.starRatingStyle"></div>
   </div>
@@ -22,7 +22,7 @@
 <style scoped>
   /* https://jsfiddle.net/4qqspqxh/ */
 
-  .rating {
+  .star-rating {
     position: relative;
     vertical-align: middle;
     display: inline-block;

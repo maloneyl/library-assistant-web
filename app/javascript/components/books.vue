@@ -37,9 +37,10 @@
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto;
+    grid-gap: 1.5em;
     justify-items: center;
     align-items: center;
-    padding-top: 3em;
+    padding: 3em 0;
 
     .description {
       padding: 0 2em 2em 2em;
@@ -66,7 +67,7 @@
     }
   }
 
-  @media only screen and (min-width: 55em) {
+  @media only screen and (min-width: 65em) {
     .books {
       grid-template-columns: 1fr 1fr 1fr;
     }
