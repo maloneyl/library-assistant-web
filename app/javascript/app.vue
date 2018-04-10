@@ -75,7 +75,7 @@
     align-items: stretch;
 
     .loader, .errors {
-      padding-top: 25vh;
+      padding-top: 15vh;
     }
   }
 
@@ -83,8 +83,8 @@
     grid-area: header;
     width: 100%;
     background: hsl(0, 0%, 10%);
-    padding: 0.5em;
-    font-size: 2em;
+    padding: 0.3em;
+    font-size: 1.5em;
   }
 
   main {

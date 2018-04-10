@@ -40,6 +40,7 @@
     position: relative;
     width: 320px;
     height: 280px;
+    max-width: 90vw;
     overflow: hidden;
 
     &:hover {

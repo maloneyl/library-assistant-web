@@ -43,7 +43,7 @@
     padding: 3em 0;
 
     .description {
-      padding: 0 2em 2em 2em;
+      padding: 0 2em 1em 2em;
       font-family: 'Lato', sans-serif;
     }
 
