@@ -6,9 +6,13 @@
     <template v-else>
       <div class="description">
         <span class="emoji">💁🏻‍♀️💁🏽‍♂️</span>
-        The library has <strong>{{ this.book_count }}</strong> of your recently added to-read books:
+        The library has <strong>{{ this.book_count }}</strong> of your recently added to-read books.
+        <div class="sort-controls">
+          <button @click="this.sortByRatingDesc">Highest rated first</button>
+          <button @click="this.sortByYearDesc">Most recently published first</button>
+        </div>
       </div>
-      <book :bookObj="book" v-for="book in books" />
+      <book :bookObj="book" v-for="book in books" :key="book.title" />
     </template>
   </section>
 </template>
@@ -28,6 +32,14 @@
       book_count () {
         return this.books.length
       }
+    },
+    methods: {
+      sortByRatingDesc() {
+        return this.books.sort((a, b) => a.average_rating < b.average_rating )
+      },
+      sortByYearDesc() {
+        return this.books.sort((a, b) => a.year < b.year )
+      }
     }
   }
 </script>
@@ -37,7 +49,7 @@
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: auto;
-    grid-gap: 1.5em;
+    grid-gap: 1em;
     justify-items: center;
     align-items: center;
     padding: 3em 0;
@@ -45,6 +57,17 @@
     .description {
       padding: 0 2em 1em 2em;
       font-family: 'Lato', sans-serif;
+      text-align: center;
+    }
+
+    .sort-controls button {
+      margin: 0.5em 0.3em 0 0.3em;
+      font-family: inherit;
+      font-size: 0.8em;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     .no-books {
@@ -70,20 +93,20 @@
   @media only screen and (min-width: 65em) {
     .books {
       grid-template-columns: 1fr 1fr 1fr;
+
+      .description {
+        grid-column: 1 / span 1;
+        text-align: right;
+        align-self: start;
+
+        .emoji {
+          display: block;
+        }
+      }
     }
 
     .no-books {
       grid-column: 1 / span 3;
-    }
-
-    .description {
-      grid-column: 1 / span 1;
-      text-align: right;
-      align-self: start;
-
-      .emoji {
-        display: block;
-      }
     }
   }
 </style>
