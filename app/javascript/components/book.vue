@@ -42,6 +42,7 @@
     height: 280px;
     max-width: 90vw;
     overflow: hidden;
+    border: 1px solid hsl(0, 0%, 80%);
 
     &:hover {
       box-shadow: 3px 3px 8px hsl(0, 0%, 70%);
@@ -60,6 +61,7 @@
       float: left;
       height: 100%;
       max-width: 60%;
+      border-right: 1px solid hsl(0, 0%, 90%);
 
       img {
         height: 100%;
