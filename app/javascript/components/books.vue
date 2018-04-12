@@ -12,7 +12,7 @@
           <button @click="this.sortByYearDesc">Most recently published first</button>
         </div>
       </div>
-      <book :bookObj="book" v-for="book in books" :key="book.title" />
+      <book :bookObj="book" v-for="book in books" :key="book.isbn" />
     </template>
   </section>
 </template>

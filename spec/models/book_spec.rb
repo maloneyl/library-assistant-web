@@ -6,7 +6,7 @@ RSpec.describe Book do
   let(:book_request) do
     OpenStruct.new(
       library_search_result: OpenStruct.new(
-        book: OpenStruct.new(title: "Title", author: "Author", year: "2018", link: "Link")
+        book: OpenStruct.new(title: "Title", author: "Author", year: "2018", link: "Link", isbn: "1234567890")
       ),
       image_url: "Image URL",
       average_rating: "4.04"
@@ -46,6 +46,12 @@ RSpec.describe Book do
   describe "#link" do
     it "returns the link" do
       expect(subject.link).to eq("Link")
+    end
+  end
+
+  describe "#isbn" do
+    it "returns the isbn" do
+      expect(subject.isbn).to eq("1234567890")
     end
   end
 end

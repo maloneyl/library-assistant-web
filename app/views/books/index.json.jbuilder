@@ -4,4 +4,5 @@ json.array! @books,
   :image_url,
   :average_rating,
   :year,
-  :link
+  :link,
+  :isbn

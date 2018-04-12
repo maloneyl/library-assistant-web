@@ -5,7 +5,7 @@ RSpec.describe "BooksController", type: :request do
     let(:book_request) do
       OpenStruct.new(
         library_search_result: OpenStruct.new(
-          book: OpenStruct.new(title: "Title", author: "Author", year: "2018", link: "Link")
+          book: OpenStruct.new(title: "Title", author: "Author", year: "2018", link: "Link", isbn: "1234567890")
         ),
         image_url: "Image URL",
         average_rating: "4.04"
@@ -28,7 +28,8 @@ RSpec.describe "BooksController", type: :request do
           "image_url" => "Image URL",
           "average_rating" => "4.04",
           "year" => "2018",
-          "link" => "Link"
+          "link" => "Link",
+          "isbn" => "1234567890"
         }
       ])
     end
