@@ -26,4 +26,8 @@ class Book
   def link
     @book_request.library_search_result.book.link
   end
+
+  def isbn
+    @book_request.library_search_result.book.isbn
+  end
 end
