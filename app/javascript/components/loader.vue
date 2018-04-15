@@ -8,7 +8,7 @@
 <style scoped>
   .loading {
     color: #ffffff;
-    font-size: 1em;
+    font-size: 0.5em;
     margin: 100px auto;
     width: 1em;
     height: 1em;

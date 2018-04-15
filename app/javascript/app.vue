@@ -1,20 +1,25 @@
 <template>
   <div id="app">
-    <div class="container">
-      <header>🤓📚</header>
+    <header>
+      <h1>🤓📚</h1>
+    </header>
 
-      <main>
-        <div class="loader" v-if="this.loading"><loader /></div>
-        <template v-else>
-          <div class="errors" v-if="this.hasErrors">😳😅</div>
-          <books v-else :books="books" />
-        </template>
-      </main>
+    <main>
+      <template v-if="this.loading || this.hasErrors">
+        <loader v-if="this.loading" />
+        <div v-if="this.hasErrors"><p>😳😅</p></div>
+      </template>
+      <template v-else>
+        <books v-if="this.hasBooks" :books="books" />
+        <div v-else><p>There are no books. 😞</p></div>
+      </template>
+    </main>
 
-      <footer>
+    <footer>
+      <p>
         &ldquo;{{ this.quote.body }}&rdquo; &mdash; {{ this.quote.author }}
-      </footer>
-    </div>
+      </p>
+    </footer>
   </div>
 </template>
 
@@ -42,6 +47,9 @@
     computed: {
       hasErrors() {
         return this.errors.length > 0
+      },
+      hasBooks() {
+        return this.books.length > 0
       }
     },
     methods: {
@@ -59,42 +67,27 @@
 
 <style lang="scss" scoped>
   #app {
-    margin: 0 auto;
-  }
-
-  .container {
     min-height: 100vh;
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: auto 1fr auto;
-    grid-template-areas:
-      "header"
-      "main"
-      "footer";
-    justify-items: center;
-    align-items: stretch;
-
-    .loader, .errors {
-      padding-top: 15vh;
-    }
+    display: flex;
+    flex-direction: column;
   }
 
   header {
-    grid-area: header;
-    width: 100%;
     background: hsl(0, 0%, 10%);
-    padding: 0.3em;
-    font-size: 1.5em;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+
+    h1 {
+      margin: 0;
+    }
   }
 
   main {
-    grid-area: main;
-    max-width: 1000px;
+    flex: 1;
+    text-align: center;
   }
 
   footer {
-    grid-area: footer;
-    width: 100%;
     background: hsl(0, 0%, 20%);
     color: hsl(360, 100%, 100%);
     padding: 1em;
@@ -102,5 +95,6 @@
     font-size: 0.7em;
     font-weight: 300;
     font-style: italic;
+    margin-top: 0.5em;
   }
 </style>
