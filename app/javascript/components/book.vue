@@ -108,7 +108,19 @@
           padding: 0.5em;
           line-height: 1.1;
           position: absolute;
-          right: 0;
+          right: 1em;
+
+          &:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 2em;
+            right: 0;
+            border-left: 1em solid transparent;
+            border-right: 1em solid transparent;
+            border-top: 1em solid hsl(0, 0%, 0%);
+          }
         }
 
         .details {
