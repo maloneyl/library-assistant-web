@@ -1,12 +1,12 @@
 <template>
   <section class="books">
-    <div class="no-books" v-if="this.book_count === 0">
+    <div class="no-books" v-if="this.bookCount === 0">
       There are no books. 😞
     </div>
     <template v-else>
       <div class="description">
         <span class="emoji">💁🏻‍♀️💁🏽‍♂️</span>
-        The library has <strong>{{ this.book_count }}</strong> of your recently added to-read books.
+        The library has <strong>{{ this.bookCount }}</strong> of your recently added to-read books.
         <div class="sort-controls">
           <button @click="this.sortByRatingDesc">Highest rated first</button>
           <button @click="this.sortByYearDesc">Most recently published first</button>
@@ -29,16 +29,16 @@
     },
     components: { Book },
     computed: {
-      book_count () {
+      bookCount () {
         return this.books.length
       }
     },
     methods: {
       sortByRatingDesc() {
-        return this.books.sort((a, b) => a.average_rating < b.average_rating )
+        return this.books.sort((a, b) => b.average_rating - a.average_rating)
       },
       sortByYearDesc() {
-        return this.books.sort((a, b) => a.year < b.year )
+        return this.books.sort((a, b) => b.year - a.year)
       }
     }
   }
