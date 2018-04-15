@@ -97,6 +97,7 @@
       .info {
         height: 100%;
         margin: 0;
+        position: relative;
 
         .index {
           background: hsl(0, 0%, 0%);
@@ -106,11 +107,11 @@
           font-size: 0.8em;
           padding: 0.5em;
           line-height: 1.1;
-          float: right;
+          position: absolute;
+          right: 0;
         }
 
         .details {
-          clear: both;
           display: flex;
           flex-direction: column;
           height: 100%;
