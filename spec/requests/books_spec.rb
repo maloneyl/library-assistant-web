@@ -13,8 +13,8 @@ RSpec.describe "BooksController", type: :request do
     end
 
     before do
-      allow(LibraryAssistant).to receive(:generate_and_handle_book_requests).
-        with(filter: true).and_return([book_request])
+      allow(LibraryAssistant).to receive(:generate_and_process_book_requests).
+        with(desired_book_count: 12).and_return([book_request])
     end
 
     it "sends an array of books" do

@@ -8,7 +8,7 @@ class BooksController < ApplicationController
   def book_requests
     begin
       Rails.cache.fetch("book_requests", expires_in: book_requests_cache_expires_in) do
-        LibraryAssistant.generate_and_handle_book_requests(filter: true)
+        LibraryAssistant.generate_and_process_book_requests(desired_book_count: 12)
       end
     rescue StandardError => e
       Rails.logger.info e
