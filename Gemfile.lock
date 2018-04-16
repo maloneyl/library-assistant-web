@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/maloneyl/library_assistant.git
-  revision: 82ba51f24208393570a09d161af30010f407e9ce
+  revision: 3d7a9c4ea9ad4fc1651f3bc08ba9329708b09752
   specs:
     library_assistant (0.1.0)
       addressable
