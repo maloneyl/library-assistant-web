@@ -22,15 +22,7 @@
     </main>
 
     <footer>
-      <div class="rule">
-        <div class="before"></div>
-        <div class="text">fin.</div>
-        <div class="after"></div>
-      </div>
-      <p class="quote">
-        &ldquo;{{ this.quote.body }}&rdquo;
-        <span class="author">&mdash; {{ this.quote.author }}</span>
-      </p>
+      <main-footer />
     </footer>
   </div>
 </template>
@@ -38,20 +30,17 @@
 <script>
   import Loader from './components/loader.vue';
   import MainNav from './components/main-nav.vue';
+  import MainFooter from './components/main-footer.vue';
   import Books from './components/books.vue';
   import axios from 'axios';
 
   export default {
-    components: { Books, Loader, MainNav },
+    components: { Books, Loader, MainNav, MainFooter },
     data() {
       return {
         loading: false,
         books: [],
         errors: [],
-        quote: {
-          body: 'I wish you way more than luck.',
-          author: 'David Foster Wallace'
-        },
         showNav: false
       }
     },
@@ -108,51 +97,12 @@
     text-align: center;
   }
 
+  footer {
+    margin-top: 0.5em;
+  }
+
   .menu {
     display: none;
-  }
-
-  footer {
-    color: hsl(0, 0%, 40%);
-    padding: 1em;
-    text-align: center;
-    font-style: italic;
-    margin-top: 0.5em;
-
-    .rule {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 1.5em;
-
-      .text {
-        font-family: 'Pacifico', cursive;
-        font-size: 1.5em;
-        margin: 0 5px;
-      }
-
-      .before, .after {
-        position: relative;
-        top: 0.75em;
-        width: 15%;
-        min-width: 100px;
-        border-top: 1px solid hsl(0, 0%, 70%);
-      }
-    }
-
-    .quote {
-      font-size: 0.7em;
-      margin-top: 1em;
-
-      .author {
-        display: block;
-      }
-    }
-  }
-
-  @media only screen and (min-width: 650px) {
-    footer .quote .author {
-      display: inline;
-    }
   }
 
   @supports (grid-area: auto) {
