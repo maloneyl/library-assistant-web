@@ -81,7 +81,8 @@
         .text-cover {
           background: hsl(0, 0%, 20%);
           color: hsl(360, 100%, 100%);
-          padding: 5px;
+          padding: 0.5em;
+          width: 150px;
           display: flex;
           flex-direction: column;
           align-items: center;

@@ -64,6 +64,15 @@
         font-family: 'Lato', sans-serif;
         font-size: 0.9em;
         margin: 5px;
+        padding: 1em 1.3em;
+        border-radius: 10px;
+        background: hsl(0, 0%, 90%);
+
+        &:hover, &:focus {
+          background: hsl(0, 0%, 85%);
+          box-shadow: 3px 3px 8px hsl(0, 0%, 70%);
+          cursor: pointer;
+        }
       }
     }
 
