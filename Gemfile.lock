@@ -66,7 +66,7 @@ GEM
     dotenv (2.4.0)
     erubi (1.7.1)
     execjs (2.7.0)
-    ffi (1.9.23)
+    ffi (1.10.0)
     fuzzy-string-match (1.0.1)
       RubyInline (>= 3.8.6)
     globalid (0.4.1)
