@@ -59,8 +59,10 @@
       fetchData() {
         this.loading = true;
 
-        axios.get('/books')
-          .then(({data}) => this.books = data)
+        axios.get(`${process.env.BOOKS_API_ROOT}/books`)
+          .then(({data}) => {
+            this.books = data.data.map(book => book.attributes)
+           })
           .catch(error => this.errors.push(error))
           .then(() => this.loading = false)
       },
